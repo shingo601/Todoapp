@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Todoリスト</title>
+</head>
+<body>
+
+    <h1>Todoリスト</h1>
+
+    {% for task in tasks %}
+        <div>
+            {% if task.completed %}
+                <s>{{ task.title }}</s>
+            {% else %}
+                {{ task.title }}
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>タスクはありません。</p>
+    {% endfor %}
+
+</body>
+</html>
