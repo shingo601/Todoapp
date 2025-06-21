@@ -1,0 +1,11 @@
+# .gitignore
+
+# 仮想環境
+myenv/
+
+# データベースファイル
+db.sqlite3
+
+# Pythonのキャッシュファイル
+__pycache__/
+*.pyc
