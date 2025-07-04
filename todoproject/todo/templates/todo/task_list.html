@@ -1,27 +1,26 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>Todoリスト</title>
-</head>
-<body>
+{% extends 'todo/base.html' %}
 
-    <h1>Todoリスト</h1>
+{% block title %}タスク一覧{% endblock %}
 
-    <a href="{% url 'task_create' %}">新しいタスクを追加</a>
+{% block content %}
+    <h1 class="mb-4">Todoリスト</h1>
 
-    {% for task in tasks %}
-        <div>
-            <a href="{% url 'task_update' task.pk %}">
-                {% if task.completed %}
-                    <s>{{ task.title }}</s>
-                {% else %}
-                    {{ task.title }}
-                {% endif %}
-            </a>
-            <a href="{% url 'task_delete' task.pk %}" style="color: red; margin-left: 10px;">削除</a>
-        </div>
-    {% endfor %}
+    <a href="{% url 'task_create' %}" class="btn btn-primary mb-3">新しいタスクを追加</a>
 
-</body>
-</html>
+    <ul class="list-group">
+        {% for task in tasks %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{% url 'task_update' task.pk %}" class="text-decoration-none text-dark">
+                    {% if task.completed %}
+                        <s>{{ task.title }}</s>
+                    {% else %}
+                        {{ task.title }}
+                    {% endif %}
+                </a>
+                <a href="{% url 'task_delete' task.pk %}" class="btn btn-danger btn-sm">削除</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">タスクはありません。</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
